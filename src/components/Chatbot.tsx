@@ -74,7 +74,7 @@ export default function Chatbot() {
       {/* Chat button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-brand-gradient text-white shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-brand-gradient text-white shadow-xl shadow-primary/40 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer"
         aria-label="Open chat"
       >
         {isOpen ? (
@@ -82,9 +82,13 @@ export default function Chatbot() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
+          <div className="w-14 h-14 rounded-full overflow-hidden bg-white/10">
+            <img 
+              src="https://assets-v2.lottiefiles.com/a/6e4b9b4c-118a-11ee-96bd-ab3b211d146d/oHx0VClTRY.gif" 
+              alt="ByteHubble Assistant" 
+              className="w-full h-full object-cover"
+            />
+          </div>
         )}
       </button>
 
@@ -94,8 +98,12 @@ export default function Chatbot() {
           {/* Header */}
           <div className="bg-brand-gradient px-5 py-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-white text-xs font-bold">AI</span>
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://assets-v2.lottiefiles.com/a/6e4b9b4c-118a-11ee-96bd-ab3b211d146d/oHx0VClTRY.gif" 
+                  alt="ByteHubble Assistant" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-white">ByteHubble Assistant</h3>
