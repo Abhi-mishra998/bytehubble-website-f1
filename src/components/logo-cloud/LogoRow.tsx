@@ -19,6 +19,8 @@ import {
   GrafanaLogo,
   GitHubLogo,
   LinuxLogo,
+  PatroniLogo,
+  LangChainLogo,
 } from "@/components/logos";
 import { useMarquee } from "@/hooks/useMarquee";
 
@@ -42,6 +44,8 @@ const logos: LogoEntry[] = [
   { name: "Nginx", component: <NginxLogo className="h-full w-auto" /> },
   { name: "Prometheus", component: <PrometheusLogo className="h-full w-auto" /> },
   { name: "Grafana", component: <GrafanaLogo className="h-full w-auto" /> },
+  { name: "Patroni", component: <PatroniLogo className="h-full w-auto" /> },
+  { name: "LangChain", component: <LangChainLogo className="h-full w-auto" /> },
   { name: "GitHub", component: <GitHubLogo className="h-full w-auto" /> },
   { name: "Linux", component: <LinuxLogo className="h-full w-auto" /> },
 ];

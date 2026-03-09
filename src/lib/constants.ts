@@ -12,27 +12,27 @@ export const NAV_LINKS = {
     items: [
       {
         title: "Runbook GPT",
-        href: "/solutions/runbook-gpt",
+        href: "/blog",
         description: "AI-powered runbook automation for database operations",
       },
       {
         title: "DB Agents",
-        href: "/solutions/db-agents",
+        href: "/blog",
         description: "Autonomous agents that monitor and manage your databases",
       },
       {
         title: "Incident AI",
-        href: "/solutions/incident-ai",
+        href: "/blog",
         description: "Self-healing incident detection and resolution",
       },
       {
         title: "Performance Tuning",
-        href: "/solutions/performance-tuning",
+        href: "/services/support",
         description: "AI-driven query optimization and performance analysis",
       },
       {
         title: "Cost Optimization",
-        href: "/solutions/cost-optimization",
+        href: "/services",
         description: "Reduce infrastructure costs with intelligent resource management",
       },
     ],
@@ -134,7 +134,7 @@ export const NAV_LINKS = {
     items: [
       {
         title: "Intelligence Hub",
-        href: "/resources/intelligence-hub",
+        href: "/blog",
         description: "Research, whitepapers, and industry analysis",
       },
       {
@@ -144,7 +144,7 @@ export const NAV_LINKS = {
       },
       {
         title: "Documentation",
-        href: "/docs",
+        href: "/blog",
         description: "Technical documentation and API references",
       },
     ],
@@ -153,28 +153,32 @@ export const NAV_LINKS = {
 
 export const PLATFORM_FEATURES = [
   {
-    title: "Runbook GPT",
+    title: "Incident & HA AI",
     description:
-      "Transform your operational runbooks into intelligent, executable workflows. AI understands your procedures and executes them autonomously.",
-    icon: "book",
-  },
-  {
-    title: "DB Agents",
-    description:
-      "Deploy autonomous AI agents that continuously monitor, optimize, and manage your PostgreSQL databases around the clock.",
-    icon: "cpu",
-  },
-  {
-    title: "Incident AI",
-    description:
-      "Self-healing incident detection and resolution. Identify issues before they impact users and resolve them automatically.",
+      "Autonomous incident triage and high-availability orchestration for mission-critical PostgreSQL systems.",
     icon: "shield",
+    href: "/blog",
   },
   {
-    title: "Training Academy",
+    title: "Query & Index Intelligence AI",
     description:
-      "World-class PostgreSQL and database engineering training programs designed for teams building at scale.",
-    icon: "graduation",
+      "AI-driven query performance optimization and automated index lifecycle management.",
+    icon: "cpu",
+    href: "/services/support",
+  },
+  {
+    title: "Capacity & FinOps AI",
+    description:
+      "Predict database growth, orchestrate disaster recovery, and continuously optimize infrastructure costs.",
+    icon: "chart",
+    href: "/services",
+  },
+  {
+    title: "Runbook GPT & Security AI",
+    description:
+      "Enterprise knowledge intelligence and security automation for PostgreSQL operations.",
+    icon: "book",
+    href: "/blog",
   },
 ];
 
@@ -248,30 +252,33 @@ export const TRAINING_PROGRAMS = [
 
 export const BLOG_POSTS = [
   {
-    title: "Why AI Agents Are the Future of Database Operations",
+    title: "PostgreSQL Is Not What You Think",
     excerpt:
-      "Explore how autonomous AI agents are transforming the way teams manage PostgreSQL at scale.",
-    category: "AI & Databases",
-    date: "2026-03-01",
+      "A deep exploration of PostgreSQL internals including MVCC snapshots, WAL-based CDC, JIT compilation, and vector search architecture.",
+    category: "Database Engineering",
+    date: "2026-03-10",
     readTime: "8 min read",
-    slug: "ai-agents-future-database-operations",
+    slug: "postgresql-deep-dive",
+    image: "/blog/blog1.png",
   },
   {
-    title: "PostgreSQL 17: What DBAs Need to Know",
+    title: "Understanding PostgreSQL MVCC Internals",
     excerpt:
-      "A deep dive into the latest PostgreSQL release and its impact on enterprise database management.",
-    category: "PostgreSQL",
-    date: "2026-02-20",
-    readTime: "12 min read",
-    slug: "postgresql-17-dba-guide",
+      "Learn how PostgreSQL implements multi-version concurrency control and snapshot isolation under the hood.",
+    category: "Database Internals",
+    date: "2026-03-08",
+    readTime: "6 min read",
+    slug: "postgres-mvcc-explained",
+    image: "/blog/blog2.png",
   },
   {
-    title: "Building Self-Healing Database Infrastructure",
+    title: "PostgreSQL as AI Infrastructure",
     excerpt:
-      "Learn how to implement automated incident detection and resolution for your database stack.",
-    category: "Infrastructure",
-    date: "2026-02-15",
-    readTime: "10 min read",
-    slug: "self-healing-database-infrastructure",
+      "Using PostgreSQL, pgvector, and relational architecture to power modern AI pipelines and RAG systems.",
+    category: "AI Engineering",
+    date: "2026-03-05",
+    readTime: "7 min read",
+    slug: "postgres-ai-infrastructure",
+    image: "/blog/blog3.png",
   },
 ];

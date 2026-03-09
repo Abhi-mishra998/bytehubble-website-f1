@@ -1,10 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
-import Chatbot from "@/components/Chatbot";
 import ConsultationModal from "@/components/ConsultationModal";
 import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
 import "./globals.css";
+
+// Lazy load the Chatbot component - loads with a placeholder while hydrating
+const Chatbot = dynamic(() => import("@/components/Chatbot"), {
+  loading: () => null,
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

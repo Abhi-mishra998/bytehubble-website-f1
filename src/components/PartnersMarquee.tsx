@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import chatbucket from "@/assets/partners/chatbucket.png";
-import ascenthome from "@/assets/partners/ascent-home.png";
 import infospoke from "@/assets/partners/inforspoke.png";
 import opensourcedb from "@/assets/partners/opensourcedb.png";
 import paycio from "@/assets/partners/paycio.png";
@@ -19,7 +18,6 @@ interface Partner {
 
 const partners: Partner[] = [
   { name: "ChatBucket", logo: "chatbucket" },
-  { name: "Ascent Home", logo: "ascenthome" },
   { name: "Infospoke", logo: "infospoke" },
   { name: "OpenSourceDB", logo: "opensourcedb" },
   { name: "Paycio", logo: "paycio" },
@@ -30,7 +28,6 @@ const partners: Partner[] = [
 // Map logo names to actual imports
 const logoMap: Record<string, typeof chatbucket> = {
   chatbucket,
-  ascenthome,
   infospoke,
   opensourcedb,
   paycio,

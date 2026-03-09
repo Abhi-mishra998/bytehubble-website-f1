@@ -83,11 +83,13 @@ export default function Chatbot() {
           </svg>
         ) : (
           <div className="w-14 h-14 rounded-full overflow-hidden bg-white/10">
-            <img 
-              src="https://assets-v2.lottiefiles.com/a/6e4b9b4c-118a-11ee-96bd-ab3b211d146d/oHx0VClTRY.gif" 
-              alt="ByteHubble Assistant" 
-              className="w-full h-full object-cover"
-            />
+            {/* Using static SVG icon instead of external GIF for better performance */}
+            <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="white" fillOpacity="0.2"/>
+              <path d="M8 10C8 10 9.5 12 12 12C14.5 12 16 10 16 10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+              <circle cx="9" cy="9" r="1" fill="white"/>
+              <circle cx="15" cy="9" r="1" fill="white"/>
+            </svg>
           </div>
         )}
       </button>
@@ -99,11 +101,13 @@ export default function Chatbot() {
           <div className="bg-brand-gradient px-5 py-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://assets-v2.lottiefiles.com/a/6e4b9b4c-118a-11ee-96bd-ab3b211d146d/oHx0VClTRY.gif" 
-                  alt="ByteHubble Assistant" 
-                  className="w-full h-full object-contain"
-                />
+                {/* Using static SVG icon instead of external GIF for better performance */}
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="white" fillOpacity="0.2"/>
+                  <path d="M8 10C8 10 9.5 12 12 12C14.5 12 16 10 16 10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="9" cy="9" r="1" fill="white"/>
+                  <circle cx="15" cy="9" r="1" fill="white"/>
+                </svg>
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-white">ByteHubble Assistant</h3>

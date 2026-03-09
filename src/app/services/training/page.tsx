@@ -12,7 +12,7 @@ const trainingPrograms = [
   {
     id: "postgresql-mastery",
     title: "PostgreSQL Mastery",
-    href: "/training/postgresql-mastery",
+    href: "/services/training#postgresql-mastery",
     duration: "12 weeks",
     level: "Beginner to Advanced",
     description: "Master PostgreSQL from fundamentals to advanced internals. Learn core architecture, query optimization, replication, and production operations.",
@@ -21,7 +21,7 @@ const trainingPrograms = [
   {
     id: "dba",
     title: "DBA Training",
-    href: "/training/dba",
+    href: "/services/training#dba",
     duration: "8 weeks",
     level: "Intermediate",
     description: "Professional database administration certification program covering day-to-day operations, monitoring, backup, and disaster recovery.",
@@ -30,7 +30,7 @@ const trainingPrograms = [
   {
     id: "ai-ml",
     title: "AI/ML for Engineers",
-    href: "/training/ai-ml",
+    href: "/services/training#ai-ml",
     duration: "10 weeks",
     level: "Intermediate to Advanced",
     description: "Learn to apply AI and machine learning techniques to database operations and infrastructure management.",
@@ -39,7 +39,7 @@ const trainingPrograms = [
   {
     id: "sre",
     title: "SRE Training",
-    href: "/training/sre",
+    href: "/services/training#sre",
     duration: "6 weeks",
     level: "Advanced",
     description: "Site reliability engineering principles applied to database platforms. Build resilient, self-healing systems.",
@@ -48,7 +48,7 @@ const trainingPrograms = [
   {
     id: "enterprise",
     title: "Enterprise Training",
-    href: "/training/enterprise",
+    href: "/services/training#enterprise",
     duration: "Custom",
     level: "All Levels",
     description: "Custom training programs designed for enterprise teams. Tailored to your specific infrastructure and requirements.",

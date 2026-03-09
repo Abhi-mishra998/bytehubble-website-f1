@@ -4,7 +4,6 @@ import TrustedBy from "@/sections/TrustedBy";
 import Problem from "@/sections/Problem";
 import PlatformOverview from "@/sections/PlatformOverview";
 import PostgresFeatures from "@/sections/PostgresFeatures";
-import Training from "@/sections/Training";
 import Blog from "@/sections/Blog";
 import CTA from "@/sections/CTA";
 import Footer from "@/sections/Footer";
@@ -41,7 +40,6 @@ export default function Home() {
       <Suspense fallback={<SectionLoader />}>
         <LogoCloud />
       </Suspense>
-      <Training />
       <Blog />
       <NewsletterSection />
       <CTA />

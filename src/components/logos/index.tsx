@@ -172,3 +172,25 @@ export function LinuxLogo({ className = "" }: LogoProps) {
   );
 }
 
+export function PatroniLogo({ className = "" }: LogoProps) {
+  return (
+    <svg className={className} viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="18" r="10" fill="#249CDB" />
+      <path d="M10 18l3 3 5-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="28" y="24" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="14" fill="#249CDB">Patroni</text>
+    </svg>
+  );
+}
+
+export function LangChainLogo({ className = "" }: LogoProps) {
+  return (
+    <svg className={className} viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 10l6 8-6 8 6 0 8-8-8-8-6 0z" fill="#1A1A1A" />
+      <path d="M18 10l6 8-6 8 6 0 8-8-8-8-6 0z" fill="#333333" />
+      <path d="M30 10l6 8-6 8 6 0 8-8-8-8-6 0z" fill="#4D4D4D" />
+      <path d="M42 10l6 8-6 8 6 0 8-8-8-8-6 0z" fill="#666666" />
+      <text x="58" y="24" fontFamily="Arial, sans-serif" fontWeight="700" fontSize="14" fill="#1A1A1A">LangChain</text>
+    </svg>
+  );
+}
+

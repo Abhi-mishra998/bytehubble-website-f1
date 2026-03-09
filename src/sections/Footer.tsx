@@ -7,41 +7,41 @@ const footerLinks = {
   solutions: {
     title: "Solutions",
     links: [
-      { label: "Runbook GPT", href: "/solutions/runbook-gpt" },
-      { label: "DB Agents", href: "/solutions/db-agents" },
-      { label: "Incident AI", href: "/solutions/incident-ai" },
-      { label: "Performance Tuning", href: "/solutions/performance-tuning" },
-      { label: "Cost Optimization", href: "/solutions/cost-optimization" },
+      { label: "Runbook GPT", href: "/blog" },
+      { label: "DB Agents", href: "/blog" },
+      { label: "Incident AI", href: "/blog" },
+      { label: "Performance Tuning", href: "/services/support" },
+      { label: "Cost Optimization", href: "/services" },
     ],
   },
   training: {
     title: "Training",
     links: [
-      { label: "PostgreSQL Mastery", href: "/training/postgresql-mastery" },
-      { label: "DBA Training", href: "/training/dba" },
-      { label: "AI-ML for Engineers", href: "/training/ai-ml" },
-      { label: "SRE Training", href: "/training/sre" },
-      { label: "Enterprise Training", href: "/training/enterprise" },
+      { label: "PostgreSQL Mastery", href: "/services/training" },
+      { label: "DBA Training", href: "/services/training#dba" },
+      { label: "AI-ML for Engineers", href: "/services/training#ai-ml" },
+      { label: "SRE Training", href: "/services/training#sre" },
+      { label: "Enterprise Training", href: "/services/training#enterprise" },
     ],
   },
   resources: {
     title: "Resources",
     links: [
-      { label: "Intelligence Hub", href: "/resources/intelligence-hub" },
+      { label: "Intelligence Hub", href: "/blog" },
       { label: "Blog", href: "/blog" },
-      { label: "Documentation", href: "/docs" },
-      { label: "API Reference", href: "/docs/api" },
-      { label: "Status Page", href: "/status" },
+      { label: "Documentation", href: "/blog" },
+      { label: "API Reference", href: "/blog" },
+      { label: "Status Page", href: "/blog" },
     ],
   },
   company: {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
+      { label: "Careers", href: "/about" },
       { label: "Contact", href: "/contact" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "Privacy Policy", href: "/about" },
+      { label: "Terms of Service", href: "/about" },
     ],
   },
 };
@@ -209,8 +209,8 @@ export default function Footer() {
                 {footerLinks.solutions.title}
               </h3>
               <ul className="space-y-3">
-                {footerLinks.solutions.links.map((link) => (
-                  <li key={link.href}>
+                {footerLinks.solutions.links.map((link, index) => (
+                  <li key={`solutions-${index}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-foreground/60 hover:text-accent transition-colors"
@@ -227,8 +227,8 @@ export default function Footer() {
                 {footerLinks.training.title}
               </h3>
               <ul className="space-y-3">
-                {footerLinks.training.links.map((link) => (
-                  <li key={link.href}>
+                {footerLinks.training.links.map((link, index) => (
+                  <li key={`training-${index}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-foreground/60 hover:text-accent transition-colors"
@@ -245,8 +245,8 @@ export default function Footer() {
                 {footerLinks.resources.title}
               </h3>
               <ul className="space-y-3">
-                {footerLinks.resources.links.map((link) => (
-                  <li key={link.href}>
+                {footerLinks.resources.links.map((link, index) => (
+                  <li key={`resources-${index}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-foreground/60 hover:text-accent transition-colors"
@@ -263,8 +263,8 @@ export default function Footer() {
                 {footerLinks.company.title}
               </h3>
               <ul className="space-y-3">
-                {footerLinks.company.links.map((link) => (
-                  <li key={link.href}>
+                {footerLinks.company.links.map((link, index) => (
+                  <li key={`company-${index}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-foreground/60 hover:text-accent transition-colors"

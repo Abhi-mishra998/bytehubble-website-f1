@@ -21,7 +21,7 @@ export default function CTA() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
-                href="/contact"
+                href="/blog"
                 className="bg-white text-primary hover:bg-white/90 shadow-lg"
                 size="lg"
               >

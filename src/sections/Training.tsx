@@ -48,7 +48,7 @@ export default function Training() {
                 ))}
               </div>
 
-              <Button href="/training" variant="ghost" size="sm">
+              <Button href="/services/training" variant="ghost" size="sm">
                 View Curriculum →
               </Button>
             </div>
@@ -56,7 +56,7 @@ export default function Training() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button href="/training/enterprise" variant="outline">
+          <Button href="/services/training#enterprise" variant="outline">
             Request Enterprise Training
           </Button>
         </div>
