@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 import companyLogo from "@/assets/company.jpeg";
@@ -51,6 +52,7 @@ function DropdownMenu({ label, items, isOpen, onMouseEnter, onMouseLeave, onTogg
         onClick={onToggle}
         className="flex items-center gap-1 text-sm font-medium text-dark-accent/80 hover:text-primary transition-colors cursor-pointer h-full"
         aria-expanded={isOpen}
+        aria-haspopup="true"
       >
         {label}
         <svg
@@ -64,35 +66,39 @@ function DropdownMenu({ label, items, isOpen, onMouseEnter, onMouseLeave, onTogg
       </button>
 
       {/* Dropdown with smooth animation */}
-      <div 
-        className={`absolute top-full left-0 mt-0 w-80 rounded-xl bg-white shadow-xl border border-gray-100 py-2 z-50 max-h-[70vh] overflow-y-auto transition-all duration-150 ease-out ${
-          isOpen 
-            ? "opacity-100 translate-y-0 visible" 
-            : "opacity-0 -translate-y-1 invisible pointer-events-none"
-        }`}
-      >
-        {sortedGroups.map((group) => (
-          <div key={group}>
-            <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider">
-              {group}
-            </div>
-            {groupedItems[group].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block px-4 py-3 hover:bg-background transition-colors"
-              >
-                <span className="block text-sm font-semibold text-dark-accent">
-                  {item.title}
-                </span>
-                <span className="block text-xs text-dark-accent/60 mt-0.5">
-                  {item.description}
-                </span>
-              </Link>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="absolute top-full left-0 mt-2 w-80 rounded-xl bg-white shadow-xl border border-gray-100 py-2 z-50 max-h-[70vh] overflow-y-auto"
+          >
+            {sortedGroups.map((group) => (
+              <div key={group}>
+                <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider">
+                  {group}
+                </div>
+                {groupedItems[group].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-4 py-3 hover:bg-background transition-colors"
+                  >
+                    <span className="block text-sm font-semibold text-dark-accent">
+                      {item.title}
+                    </span>
+                    <span className="block text-xs text-dark-accent/60 mt-0.5">
+                      {item.description}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -101,18 +107,44 @@ export default function Navbar() {
   const { openModal } = useConsultationModal();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
 
-  // Detect mobile/touch device
+  // Handle scroll effect
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(typeof window !== 'undefined' && (window.innerWidth < 1024 || 'ontouchstart' in window));
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
     };
     
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle click outside to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (openDropdown && navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [openDropdown]);
+
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleDropdown = (e: React.MouseEvent, key: string) => {
@@ -132,33 +164,26 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
-  // Click outside to close dropdown
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (openDropdown && navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [openDropdown]);
-
   return (
-    <nav ref={navbarRef} className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <nav 
+      ref={navbarRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-lg shadow-lg shadow-black/5' 
+          : 'bg-white/80 backdrop-blur-lg'
+      } border-b border-gray-100`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative w-45 h-45">
+          <Link href="/" className="flex items-center gap-2" aria-label="ByteHubble Home">
+            <div className="relative w-40 h-12">
               <Image
                 src={companyLogo}
                 alt="ByteHubble"
                 fill
                 className="object-contain"
-                unoptimized
+                priority
               />
             </div>
           </Link>
@@ -201,7 +226,7 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <button
               onClick={openModal}
-              className="px-4 py-2 text-sm font-semibold text-white bg-brand-gradient rounded-lg shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-primary to-primary/90 rounded-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
             >
               Schedule Consultation
             </button>
@@ -209,9 +234,10 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 text-dark-accent cursor-pointer"
+            className="lg:hidden p-2 text-dark-accent cursor-pointer hover:bg-gray-100 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -227,30 +253,46 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 animate-fade-in">
-          <div className="px-4 py-4 space-y-4">
-            {/* Solutions */}
-            <MobileDropdown label="Solutions" items={NAV_LINKS.solutions.items} />
-            <MobileDropdown label="Services" items={NAV_LINKS.services.items} />
-            <MobileDropdown label="Resources" items={NAV_LINKS.resources.items} />
-            <Link
-              href="/about"
-              className="block text-sm font-medium text-dark-accent/80 py-2"
-            >
-              About
-            </Link>
-            <div className="pt-2">
-              <button
-                onClick={openModal}
-                className="w-full px-4 py-2 text-sm font-semibold text-white bg-brand-gradient rounded-lg shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
+          >
+            <div className="px-4 py-4 space-y-4">
+              {/* Solutions */}
+              <MobileDropdown label="Solutions" items={NAV_LINKS.solutions.items} />
+              {/* Services */}
+              <MobileDropdown label="Services" items={NAV_LINKS.services.items} />
+              {/* Resources */}
+              <MobileDropdown label="Resources" items={NAV_LINKS.resources.items} />
+              
+              <Link
+                href="/about"
+                className="block text-sm font-medium text-dark-accent/80 py-2 hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Schedule Consultation
-              </button>
+                About
+              </Link>
+              
+              <div className="pt-2">
+                <button
+                  onClick={() => {
+                    openModal();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-primary to-primary/90 rounded-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                >
+                  Schedule Consultation
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
@@ -276,7 +318,8 @@ function MobileDropdown({ label, items }: { label: string; items: DropdownItem[]
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-sm font-medium text-dark-accent/80 py-2 cursor-pointer"
+        className="flex items-center justify-between w-full text-sm font-medium text-dark-accent/80 py-2 cursor-pointer hover:text-primary transition-colors"
+        aria-expanded={isOpen}
       >
         {label}
         <svg
@@ -288,26 +331,34 @@ function MobileDropdown({ label, items }: { label: string; items: DropdownItem[]
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      {isOpen && (
-        <div className="pl-4 space-y-3 pb-2">
-          {sortedGroups.map((group) => (
-            <div key={group}>
-              <div className="text-xs font-semibold text-primary uppercase tracking-wider py-1">
-                {group}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="pl-2 space-y-3 pb-2 overflow-hidden"
+          >
+            {sortedGroups.map((group) => (
+              <div key={group}>
+                <div className="text-xs font-semibold text-primary uppercase tracking-wider py-1">
+                  {group}
+                </div>
+                {groupedItems[group].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block text-sm text-dark-accent/60 hover:text-primary py-2 pl-2 transition-colors"
+                  >
+                    {item.title}
+                  </Link>
+                ))}
               </div>
-              {groupedItems[group].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block text-sm text-dark-accent/60 hover:text-primary py-1 pl-2"
-                >
-                  {item.title}
-                </Link>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

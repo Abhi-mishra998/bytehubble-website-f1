@@ -46,15 +46,79 @@ const footerLinks = {
   },
 };
 
+// Location data
+const locations = [
+  {
+    city: "USA",
+    address: "42381 Dogwood Glen Sq",
+    state: "Sterling, VA 20166, USA",
+  },
+  {
+    city: "Hyderabad",
+    address: "Elite Business Center, 13th Floor #12A02B",
+    state: "Manjeera Trinity Corporate, KPHB Phase-3, Hyderabad - 500072",
+  },
+];
+
+// SVG Icons as components
+const MapPinIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+const MailIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </svg>
+);
+
+const GlobeIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+);
+
 export default function Footer() {
   return (
     <footer className="bg-background text-foreground border-t border-primary/10">
       <Container>
         <div className="py-16 lg:py-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
             {/* Brand column */}
-            <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
-              <Link href="/" className="flex items-center gap-0 mb-6">
+            <div className="col-span-2 md:col-span-3 lg:col-span-2 mb-8 lg:mb-0">
+              <Link href="/" className="flex items-center gap-0 mb-4">
                 <div className="relative w-40 h-12">
                   <Image
                     src={companyLogo}
@@ -65,13 +129,67 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <p className="text-sm text-foreground/70 leading-relaxed max-w-xs">
+              
+              {/* Brand Domains */}
+              <div className="flex items-center gap-2 mb-4">
+                <GlobeIcon className="w-4 h-4 text-accent" />
+                <span className="text-sm font-medium text-foreground">
+                  bytehubble.ai
+                </span>
+                <span className="text-foreground/30">|</span>
+                <span className="text-sm font-medium text-foreground">
+                  bytehubble.com
+                </span>
+              </div>
+              
+              <p className="text-sm text-foreground/70 leading-relaxed mb-6 max-w-xs">
                 The AI intelligence layer your PostgreSQL stack is missing.
                 Automate, optimize, and transform your database operations.
               </p>
 
+              {/* Contact Section */}
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                  Contact Us
+                </h4>
+                
+                {/* Email */}
+                <a
+                  href="mailto:support@bytehubble.ai"
+                  className="flex items-start gap-3 group"
+                >
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <MailIcon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      support@bytehubble.ai
+                    </p>
+                  </div>
+                </a>
+
+                {/* Locations */}
+                {locations.map((location) => (
+                  <div key={location.city} className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center">
+                      <MapPinIcon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">
+                        {location.city}
+                      </p>
+                      <p className="text-xs text-foreground/60 leading-relaxed">
+                        {location.address}
+                        <br />
+                        {location.state}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               {/* Social links */}
-              <div className="flex items-center gap-5 mt-6">
+              <div className="flex items-center gap-4 mt-6 pt-6 border-t border-primary/10">
                 {["Twitter", "LinkedIn", "GitHub"].map((social) => (
                   <a
                     key={social}
@@ -85,26 +203,78 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Link columns */}
-            {Object.values(footerLinks).map((section) => (
-              <div key={section.title}>
-                <h3 className="text-sm font-semibold text-foreground mb-5">
-                  {section.title}
-                </h3>
-                <ul className="space-y-3.5">
-                  {section.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-foreground/60 hover:text-accent transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Link columns - spread across remaining columns */}
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-5 uppercase tracking-wider">
+                {footerLinks.solutions.title}
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.solutions.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-foreground/60 hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-5 uppercase tracking-wider">
+                {footerLinks.training.title}
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.training.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-foreground/60 hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-5 uppercase tracking-wider">
+                {footerLinks.resources.title}
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.resources.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-foreground/60 hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground mb-5 uppercase tracking-wider">
+                {footerLinks.company.title}
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.company.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-foreground/60 hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -113,11 +283,10 @@ export default function Footer() {
           <p className="text-sm text-foreground/50">
             © {new Date().getFullYear()} ByteHubble. All rights reserved.
           </p>
-          <p className="text-sm text-foreground/50">
-            DB Intelligence Platform
-          </p>
+          <p className="text-sm text-foreground/50">DB Intelligence Platform</p>
         </div>
       </Container>
     </footer>
   );
 }
+

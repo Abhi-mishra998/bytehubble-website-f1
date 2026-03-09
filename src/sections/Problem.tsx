@@ -46,7 +46,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section id="problem-section" className="py-16 lg:py-20 bg-white scroll-mt-24">
       <Container>
         <SectionHeading
           label="The Challenge"

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Container from "@/components/ui/Container";
 import chatbucket from "@/assets/partners/chatbucket.png";
 import ascenthome from "@/assets/partners/ascent-home.png";
 import infospoke from "@/assets/partners/inforspoke.png";
@@ -49,14 +50,16 @@ export default function PartnersMarquee() {
 
   return (
     <section className="py-16 bg-gray-50">
-      <div className="text-center mb-12">
-        <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase mb-2">
-          Trusted By
-        </p>
-        <h2 className="text-3xl md:text-4xl font-semibold text-[#2E2A8F]">
-          Our Clients & Partners
-        </h2>
-      </div>
+      <Container>
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase mb-2">
+            Trusted By
+          </p>
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#2E2A8F]">
+            Our Clients & Partners
+          </h2>
+        </div>
+      </Container>
 
       <div
         ref={containerRef}
