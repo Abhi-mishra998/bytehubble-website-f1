@@ -63,6 +63,10 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: "/company.jpeg",
+    apple: "/company.jpeg",
+  },
   robots: {
     index: true,
     follow: true,

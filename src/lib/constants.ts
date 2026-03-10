@@ -282,3 +282,21 @@ export const BLOG_POSTS = [
     image: "/blog/blog3.png",
   },
 ];
+
+export const ACADEMIC_PARTNERS = [
+  {
+    name: "JNTU Hyderabad",
+    fullName: "Jawaharlal Nehru Technological University Hyderabad",
+    description: "Partner institution for enterprise database engineering and advanced PostgreSQL training programs.",
+  },
+  {
+    name: "Amity University",
+    fullName: "Amity University",
+    description: "Academic collaboration for cloud-native architecture and modern data engineering practices.",
+  },
+  {
+    name: "Mohan Babu University",
+    fullName: "Mohan Babu University (MBU), Tirupati",
+    description: "Partner for industry-focused database engineering and DevOps training initiatives.",
+  },
+];

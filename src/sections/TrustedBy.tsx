@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import chatbucket from "@/assets/partners/chatbucket.png";
+import cloudcontrol from "@/assets/partners/cloudcontrol.png";
 import infospoke from "@/assets/partners/inforspoke.png";
 import opensourcedb from "@/assets/partners/opensourcedb.png";
 import paycio from "@/assets/partners/paycio.png";
+import pcom from "@/assets/partners/pcom.png";
+import superlogix from "@/assets/partners/superlogix.png";
 import lowtouch from "@/assets/partners/lowtouch.ai.png";
 import tentacletech from "@/assets/partners/tentacle-tech.png";
 
@@ -17,10 +20,12 @@ interface Partner {
 
 const partners: Partner[] = [
   { name: "ChatBucket", logo: chatbucket },
-
+  { name: "CloudControl", logo: cloudcontrol },
   { name: "Infospoke", logo: infospoke },
   { name: "OpenSourceDB", logo: opensourcedb },
   { name: "Paycio", logo: paycio },
+  { name: "PCOM", logo: pcom },
+  { name: "Superlogix", logo: superlogix },
   { name: "Low Touch.ai", logo: lowtouch },
   { name: "Tentacle Tech", logo: tentacletech },
 ];
@@ -110,7 +115,7 @@ export default function TrustedBy() {
         
         <motion.div
           className="flex gap-4 md:gap-6 lg:gap-8"
-          animate={{ x: ["0%", "-33.33%"] }}
+          animate={{ x: ["0%", "-25%"] }}
           transition={{
             x: {
               repeat: Infinity,
@@ -131,7 +136,7 @@ export default function TrustedBy() {
                 alt={partner.name}
                 className="h-6 w-auto md:h-8 lg:h-10 xl:h-12 object-contain"
                 style={{ 
-                  filter: partner.name === "Low Touch.ai" ? "brightness(0) opacity(0.7)" : "none",
+                  filter: partner.name === "Low Touch.ai" || partner.name === "CloudControl" ? "brightness(0) opacity(0.7)" : "none",
                   minWidth: "60px"
                 }}
                 unoptimized

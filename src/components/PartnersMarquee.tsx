@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import chatbucket from "@/assets/partners/chatbucket.png";
+import cloudcontrol from "@/assets/partners/cloudcontrol.png";
 import infospoke from "@/assets/partners/inforspoke.png";
 import opensourcedb from "@/assets/partners/opensourcedb.png";
 import paycio from "@/assets/partners/paycio.png";
+import pcom from "@/assets/partners/pcom.png";
+import superlogix from "@/assets/partners/superlogix.png";
 import lowtouch from "@/assets/partners/lowtouch.ai.png";
 import tentacletech from "@/assets/partners/tentacle-tech.png";
 import { useMarquee } from "@/hooks/useMarquee";
@@ -18,9 +21,12 @@ interface Partner {
 
 const partners: Partner[] = [
   { name: "ChatBucket", logo: "chatbucket" },
+  { name: "CloudControl", logo: "cloudcontrol" },
   { name: "Infospoke", logo: "infospoke" },
   { name: "OpenSourceDB", logo: "opensourcedb" },
   { name: "Paycio", logo: "paycio" },
+  { name: "PCOM", logo: "pcom" },
+  { name: "Superlogix", logo: "superlogix" },
   { name: "Low Touch.ai", logo: "lowtouch" },
   { name: "Tentacle Tech", logo: "tentacletech" },
 ];
@@ -28,9 +34,12 @@ const partners: Partner[] = [
 // Map logo names to actual imports
 const logoMap: Record<string, typeof chatbucket> = {
   chatbucket,
+  cloudcontrol,
   infospoke,
   opensourcedb,
   paycio,
+  pcom,
+  superlogix,
   lowtouch,
   tentacletech,
 };
@@ -84,7 +93,7 @@ export default function PartnersMarquee() {
                 src={logoMap[partner.logo]}
                 alt={partner.name}
                 className="max-h-10 sm:max-h-12 w-auto object-contain"
-                style={{ filter: partner.logo === "lowtouch" ? "brightness(0)" : "none" }}
+                style={{ filter: partner.logo === "lowtouch" || partner.logo === "cloudcontrol" ? "brightness(0)" : "none" }}
                 unoptimized
               />
             </div>

@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
-import { TRAINING_PROGRAMS } from "@/lib/constants";
+import AcademicPartners from "@/components/sections/AcademicPartners";
 
 export const metadata = {
   title: "Training Programs — ByteHubble",
@@ -195,6 +195,9 @@ export default function TrainingPage() {
           </div>
         </Container>
       </section>
+
+      {/* Official Academic Partners Section */}
+      <AcademicPartners />
 
       {/* CTA Section */}
       <section className="py-20">
